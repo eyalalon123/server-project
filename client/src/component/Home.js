@@ -9,32 +9,38 @@ function Home() {
 
     const handleChangePassword = e => {
         e.preventDefault();
-        setPassword = passwordValue;
+        setPassword(e.target.value);
+        console.log(password);
     }
     const handleChangeUsername = e => {
         e.preventDefault();
-        setUsername = usernameValue;
+        setUsername(e.target.value);
     }
-    const getUsername = async () => {
-        let res = await fetch("localhost:5000/manage", {
+    async function createPost(e) {
+        e.preventDefault()
+        const response = await fetch('http://localhost:5000', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-        }) 
-            .then(response => response.json())
-            .catch(error => { throw error });
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+        let data = await response.json();
+        console.log(data);
+        // return await response.json();
     }
 
 
+
     return (
-        <>
-            <form>
-                <input onChange={handleChangeUsername} type="text" value={usernameValue} placeholder="User Name:" />
-                <input onChange={handleChangePassword} type="password" value={passwordValue} placeholder="Password:" />
-            </form>
-        </>
+        <form>
+            <input onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
+            <input onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
+            <button onClick={createPost}> Submit </button>
+        </form>
     )
 }
 
