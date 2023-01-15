@@ -3,8 +3,10 @@ const fs = require('fs');
 const router = require('router');
 
 
-router.get('/create-file', (req, res) => {
-    fs.writeFile(`${txtName}.txt`,`${text}`, (err) => {
+router.post('/files', (req, res) => {
+    textName = req.body.textName;
+    text = req.body.text;
+    fs.writeFile(`${textName}.txt`,`${text}`, (err) => {
     if (err) {
       res.status(500).send(err.message);
       return;
