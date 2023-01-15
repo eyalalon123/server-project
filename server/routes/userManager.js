@@ -5,7 +5,7 @@ let fs = require('fs/promises');
 
 
 /* GET home page. */
-router.post('/login', function(req, res, next) {
+router.post('/manage', function(req, res, next) {
     let username = req.body.username
     let password = req.body.password
     if (!username || !password){
