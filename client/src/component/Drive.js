@@ -91,22 +91,20 @@ function Drive() {
     const handleFileSelect = e => {
         setSelectedFiles(e.target.files[0])
     }
-    const handleUpload = () => {
+    const handleUpload = async () => {
         if (!selectedFiles) {
-            console.log('no files selected')
-            return;
+          console.log('Please select a file to upload');
+          return
         }
-
-        const formData = new FormData()
-        formData.append('file', selectedFiles)
-        fetch('http://localhost:5000/upload', {
-            method: "POST",
+        const formData = new FormData();
+        formData.append('file', selectedFiles);
+        formData.append('textName', 'texts')
+        const res = await fetch('http://localhost:5000/upload', {
+            method: 'POST',
             body: formData
-        })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
-
+        });
+        const data = await res.json();
+        console.log(data);
     }
     return (
         <div>

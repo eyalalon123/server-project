@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+
 
 
 function Home() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     const handleChangePassword = e => {
         e.preventDefault();
         setPassword(e.target.value);
+        console.log(password);
     }
     const handleChangeUsername = e => {
         e.preventDefault();
@@ -29,10 +29,8 @@ function Home() {
             })
         });
         let data = await response.json();
-        console.log(data.message);
-        if (data.message === "logged in!"){
-            navigate("/drive")
-        }
+        console.log(data);
+        // return await response.json();
     }
 
 

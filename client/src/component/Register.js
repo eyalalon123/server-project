@@ -16,8 +16,8 @@ function Register() {
         setUsername(e.target.value);
     }
     const handleRegister = async (e) => {
+        e.preventDefault();
         if (username && password) {
-            e.preventDefault();
             console.log('clikced')
             try {
                 const response = await fetch('http://localhost:5000/register', {
