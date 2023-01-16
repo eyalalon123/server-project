@@ -35,8 +35,28 @@ function Register() {
             } catch (err) {
                 console.log(err)
             }
+            createNewfolder();
             navigate("/drive")
         }
+    }
+    const createNewfolder = async (e) => {
+            console.log('clikced')
+            try {
+                const response = await fetch('http://localhost:5000/createNewFolder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username
+                    })
+                });
+                let data = await response.json();
+                console.log(data);
+            } catch (err) {
+                console.log(err)
+            }
+
     }
 
     const moveToLogin = () => {
