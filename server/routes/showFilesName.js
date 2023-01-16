@@ -5,15 +5,23 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
 
-  fs.readdir('./texts/', (err, files) => {
+    fs.readdir('./texts/', (err, files) => {
         if (err) {
-          res.status(500).send(err.message);
-          return;
+            res.status(500).send(err.message);
+            return;
         }
-        res.status(200).send(JSON.stringify(files))
+        let modifiedFiles = []
+        files.forEach((file) => {
+            if (file.endsWith(".txt")) {
+                let newName = file.slice(0, -4);
+                modifiedFiles.push(newName)
+            }
+        });
+        res.status(200).send(JSON.stringify(modifiedFiles));
+    });
+
 
 });
-}); 
 
 
 module.exports = router;
