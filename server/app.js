@@ -6,6 +6,10 @@ var logger = require('morgan');
 let cors = require('cors')
 let userManager = require('./routes/userManager')
 let newFiles = require('./routes/newFile')
+let readFiles = require('./routes/readFile')
+let uploadFiles = require('./routes/uploadFile')
+
+
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
@@ -17,5 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => res.send("hi"))
  app.use("/" , userManager)
 app.use('/newFile', newFiles)
+app.use('/readFile', readFiles)
+app.use('/upload', uploadFiles)
+
 
 module.exports = app;

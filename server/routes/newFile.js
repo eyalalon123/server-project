@@ -3,17 +3,6 @@ const fs = require('fs');
 const router = express.Router();
 
 
-// router.post('/newFile', (req, res) => {
-//   textName = req.body.textName
-//   text = req.body.text
-//     fs.writeFile(`${textName}.txt`,`${text}`, (err) => {
-//     if (err) {
-//       res.status(500).send(err.message);
-//       return;
-//     }
-//     res.status(200).send('File created successfully');
-//   });
-// });
 router.post('/', (req, res) => {
   console.log('im here')
   let textName = req.body.textName
