@@ -10,6 +10,8 @@ let readFiles = require('./routes/readFile')
 let uploadFiles = require('./routes/uploadFile')
 let register = require('./routes/register')
 
+let deleteFiles = require('./routes/deleteFile')
+let showFilesName = require('./routes/showFilesName')
 
 var app = express();
 app.use(bodyParser.json());
@@ -25,5 +27,7 @@ app.use('/newFile', newFiles)
 app.use('/readFile', readFiles)
 app.use('/upload', uploadFiles)
 app.use('/register' , register)
+app.use('/delete', deleteFiles)
+app.use('/showFilesName', showFilesName)
 
 module.exports = app;
