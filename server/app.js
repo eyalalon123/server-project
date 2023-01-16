@@ -8,6 +8,8 @@ let userManager = require('./routes/login')
 let newFiles = require('./routes/newFile')
 let readFiles = require('./routes/readFile')
 let uploadFiles = require('./routes/uploadFile')
+let register = require('./routes/register')
+
 let deleteFiles = require('./routes/deleteFile')
 let showFilesName = require('./routes/showFilesName')
 
@@ -24,6 +26,7 @@ app.get("/", (req, res) => res.send("hi"))
 app.use('/newFile', newFiles)
 app.use('/readFile', readFiles)
 app.use('/upload', uploadFiles)
+app.use('/register' , register)
 app.use('/delete', deleteFiles)
 app.use('/showFilesName', showFilesName)
 
