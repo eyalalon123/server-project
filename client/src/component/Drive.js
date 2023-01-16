@@ -31,8 +31,15 @@ function Drive() {
             body: JSON.stringify({
                 textName: tn
             })
-        });
+        })
+        .then(res => res.text())
+        .then(data => {
+            const content = document.getElementById('content')
+            content.innerHTML = data
+        })
+        .catch(err => console.log(err))
     }
+   
     
 
 
@@ -65,6 +72,7 @@ function Drive() {
         <div>
             <button onClick={addText}>create new file</button>
             <button onClick={showFile}>Show File</button>
+            <div id="content"></div>
             <input type={"file"} onChange={handleFileSelect}></input>
             <button onClick={handleUpload}>uploadFiles</button>
         </div>
