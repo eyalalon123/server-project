@@ -8,6 +8,7 @@ let userManager = require('./routes/login')
 let newFiles = require('./routes/newFile')
 let readFiles = require('./routes/readFile')
 let uploadFiles = require('./routes/uploadFile')
+let register = require('./routes/register')
 
 
 var app = express();
@@ -23,6 +24,6 @@ app.get("/", (req, res) => res.send("hi"))
 app.use('/newFile', newFiles)
 app.use('/readFile', readFiles)
 app.use('/upload', uploadFiles)
-
+app.use('/register' , register)
 
 module.exports = app;

@@ -5,22 +5,25 @@ let fs = require('fs');
 router.use(express.json());
 let users = require('../user.json')
 
-
-
-router.post(__dirname+'./user.json', (req, res) => {
+router.post('/', (req, res) => {
     console.log('im here')
     let username = req.body.username
     let password = req.body.password
     const customer = {
-        id: users.length + 1 ,
+        id: users.length + 1,
         name: `${username}`,
         password: `${password}`,
     }
     users.push(customer);
+    console.log(users)
+    fs.writeFile(__dirname + '/user.json', JSON.stringify(users), (err) => {
+        if (err) {
+             throw err;
+        }
+        res.send(JSON.stringify('register completed'))
+    });
 
- // what to do
-        return res.status(400).send(JSON.stringify({ message: "username and password doesnt match" }));
-    })
+})
 
 
 module.exports = router;

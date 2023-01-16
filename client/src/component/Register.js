@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState  } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 function Register() {
@@ -16,33 +16,39 @@ function Register() {
         setUsername(e.target.value);
     }
     const handleRegister = async (e) => {
-        e.preventDefault()
-        const response = await fetch('http://localhost:5000/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        });
-        let data = await response.json();
-        console.log(data.message);
+        e.preventDefault();
+        console.log('clikced')
+        try {
+            const response = await fetch('http://localhost:5000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+            let data = await response.json();
+            console.log(data);
+        } catch (err) {
+            console.log(err)
+        }
+        navigate("/drive")
     }
 
-    const moveToLogin =()=>{
+    const moveToLogin = () => {
         navigate("/login")
     }
-    return( 
-        <diV>
+    return (
+        <div>
             <form>
-            <input onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
-            <input onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
-            <button onClick={handleRegister}> Register </button>
-            <button onClick={moveToLogin}> Already a member? </button>
+                <input onChange={handleChangeUsername} type="text" value={username.value} placeholder="User Name:" />
+                <input onChange={handleChangePassword} type="password" value={password.value} placeholder="Password:" />
+                <button onClick={handleRegister}> Register </button>
+                <button onClick={moveToLogin}> Already a member? </button>
             </form>
-        </diV>
+        </div>
     )
 }
 
