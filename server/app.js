@@ -8,7 +8,8 @@ let userManager = require('./routes/login')
 let newFiles = require('./routes/newFile')
 let readFiles = require('./routes/readFile')
 let uploadFiles = require('./routes/uploadFile')
-
+let deleteFiles = require('./routes/deleteFile')
+let showFilesName = require('./routes/showFilesName')
 
 var app = express();
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.get("/", (req, res) => res.send("hi"))
 app.use('/newFile', newFiles)
 app.use('/readFile', readFiles)
 app.use('/upload', uploadFiles)
-
+app.use('/delete', deleteFiles)
+app.use('/showFilesName', showFilesName)
 
 module.exports = app;
