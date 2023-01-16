@@ -4,8 +4,9 @@ const router = express.Router();
 
 
 router.post('/', (req, res) => {
+    let userOnline = req.body.userOnline
 
-    fs.readdir('./texts/', (err, files) => {
+    fs.readdir(`./texts/${userOnline}`, (err, files) => {
         if (err) {
             res.status(500).send(err.message);
             return;

@@ -5,8 +5,9 @@ const router = express.Router();
 
 router.delete('/', (req, res) => {
   let textName = req.body.textName
+  let userOnline = req.body.userOnline
 
-  fs.unlink(`./texts/${textName}.txt`, (err) => {
+  fs.unlink(`./texts/${userOnline}/${textName}.txt`, (err) => {
         if (err) {
           res.status(500).send(err.message);
           return;

@@ -5,8 +5,9 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
   let textName = req.body.textName
+  let userOnline = req.body.userOnline
 
-  fs.readFile(`./texts/${textName}.txt`,"utf8", (err, data) => {
+  fs.readFile(`./texts/${userOnline}/${textName}.txt`,"utf8", (err, data) => {
         if (err) {
           res.status(500).send(err.message);
           return;

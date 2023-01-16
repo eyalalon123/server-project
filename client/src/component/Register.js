@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-function Register() {
+function Register(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -37,9 +37,10 @@ function Register() {
             }
             createNewfolder();
             navigate("/drive")
+            props.setUserOnline(username)
         }
     }
-    const createNewfolder = async (e) => {
+    const createNewfolder = async () => {
             console.log('clikced')
             try {
                 const response = await fetch('http://localhost:5000/createNewFolder', {

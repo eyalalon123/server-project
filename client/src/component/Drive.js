@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-function Drive() {
+function Drive(props) {
     const [selectedFiles, setSelectedFiles] = useState(null)
 
     async function createFiles(tn, t) {
@@ -12,9 +12,11 @@ function Drive() {
             },
             body: JSON.stringify({
                 textName: tn,
-                text: t
+                text: t,
+                userOnline: props.userOnline
             })
         });
+        if(`./texts/${props.userOnline}/${tn}.txt`){alert("File created successfully")}
     }
     const addText = () => {
         let fileName = prompt('are u gay?');
@@ -29,7 +31,8 @@ function Drive() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                textName: tn
+                textName: tn,
+                userOnline: props.userOnline
             })
         })
             .then(res => res.text())
@@ -47,7 +50,8 @@ function Drive() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                textName: tn
+                textName: tn,
+                userOnline: props.userOnline
             })
         })
             .then(res => res.text())
@@ -57,7 +61,8 @@ function Drive() {
 
     const showAllTheFiles = async (tn) => {
         let obj = {
-            textName: tn
+            textName: tn,
+            userOnline: props.userOnline
         }
         const response = await fetch('http://localhost:5000/showFilesName', {
             method: 'POST',
@@ -101,7 +106,8 @@ function Drive() {
         formData.append('textName', 'texts')
         const res = await fetch('http://localhost:5000/upload', {
             method: 'POST',
-            body: formData
+            body: formData,
+            userOnline: props.userOnline
         });
         const data = await res.json();
         console.log(data);

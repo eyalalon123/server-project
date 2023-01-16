@@ -1,16 +1,17 @@
 import React, { useDebugValue } from 'react';
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom'
 
 
 
-function Home() {
+function Home(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate()
 
     const handleChangePassword = e => {
         e.preventDefault();
         setPassword(e.target.value);
-        console.log(password);
     }
     const handleChangeUsername = e => {
         e.preventDefault();
@@ -29,8 +30,13 @@ function Home() {
             })
         });
         let data = await response.json();
-        console.log(data);
-        // return await response.json();
+        if(data.message === 'logged in!'){
+            navigate('/drive')
+            props.setUsername(username)
+        }
+        else {
+            alert("username and password doesnt match")
+        }        
     }
 
 

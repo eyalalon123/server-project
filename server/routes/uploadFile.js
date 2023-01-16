@@ -7,9 +7,11 @@ const path = require('path');
 
 
 router.post('/', upload.single("file"), (req, res) => {
+    let userOnline = req.userOnline
+
     try {
         const file = req.file;
-        const dir = './texts';
+        const dir = `./texts/${userOnline}`;
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir);
         }
