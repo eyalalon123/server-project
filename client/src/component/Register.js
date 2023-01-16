@@ -16,25 +16,27 @@ function Register() {
         setUsername(e.target.value);
     }
     const handleRegister = async (e) => {
-        e.preventDefault();
-        console.log('clikced')
-        try {
-            const response = await fetch('http://localhost:5000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            });
-            let data = await response.json();
-            console.log(data);
-        } catch (err) {
-            console.log(err)
+        if (username && password) {
+            e.preventDefault();
+            console.log('clikced')
+            try {
+                const response = await fetch('http://localhost:5000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+                let data = await response.json();
+                console.log(data);
+            } catch (err) {
+                console.log(err)
+            }
+            navigate("/drive")
         }
-        navigate("/drive")
     }
 
     const moveToLogin = () => {
